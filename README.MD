@@ -12,6 +12,10 @@ https://gin-gonic.com/
 go get "github.com/gin-gonic/gin"    
 ```
 
+```
+go get github.com/glebarez/sqlite
+```
+
 
 
 Limpara o mod
