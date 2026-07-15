@@ -9,6 +9,8 @@ func InitializeRouter(router *gin.Engine) {
 
 	v1 := router.Group("/api/v1")
 	{
+		InitializeHandler()
+		// defer CloseDB()
 		v1.GET("/opening", func(ctx *gin.Context) {
 			ShowOpeningHandler(ctx)
 		})

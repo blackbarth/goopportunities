@@ -1,8 +1,10 @@
 package schemas
 
 import (
-  "gorm.io/driver/sqlite"
-  "gorm.io/gorm"
+	"time"
+
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
 type Opening struct {
@@ -26,3 +28,17 @@ func CreateDB() *gorm.DB {
 	return db
 }
 
+
+
+type OpeningResponse struct {
+	Id uint `json:"id"`
+	CreatedAt time.Time `json:"created_at"`
+	UpdatedAt time.Time `json:"updated_at"`
+	DeletedAt time.Time `json:"deleted_at,omitempty"`
+	Role string `json:"role"`
+	Company string `json:"company"`
+	Location string `json:"location"`
+	Remote bool `json:"remote"`
+	Link string `json:"link"`
+	Salary int64 `json:"salary"`
+}

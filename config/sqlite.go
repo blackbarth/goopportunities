@@ -48,3 +48,17 @@ func InitializeSQLite() (*gorm.DB, error) {
 	logger.Info("SQLite database initialized successfully")
 	return db, nil
 }
+
+func GetSQLite() *gorm.DB {
+	return db
+}
+
+func CloseSQLite() {
+	sqlDB, err := db.DB()
+	if err != nil {
+		logger.Error("Failed to get database instance:", err)
+		return
+	}
+	sqlDB.Close()
+}
+
