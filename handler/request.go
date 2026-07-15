@@ -7,6 +7,26 @@ import (
 	"gorm.io/gorm"
 )
 
+// CreateOpening
+type CreateOpeningRequest struct {
+	Role     string `json:"role"`
+	Company  string `json:"company"`
+	Location string `json:"location"`
+	Remote   *bool   `json:"remote"`
+	Link     string `json:"link"`
+	Salary   int64  `json:"salary"`
+}
+
+type UpdateOpeningRequest struct {
+	Role	 string `json:"role"`
+	Company  string `json:"company"`
+	Location string `json:"location"`
+	Remote   *bool   `json:"remote"`
+	Link     string `json:"link"`
+	Salary   int64  `json:"salary"`
+}
+
+
 var (
 	logger *config.Logger
 	db     *gorm.DB
@@ -60,4 +80,16 @@ func (r *CreateOpeningRequest) Validate() error {
 
 func errParamIsRequired(name, typ string) error {
 	return fmt.Errorf("Param %s (type: %s) is required", name, typ)
+}
+
+
+func (r *UpdateOpeningRequest) Validate() error {
+
+	// If any field is provided, validation is truthy	
+	if r.Role != "" || r.Company != "" || r.Location != "" || r.Link != "" || r.Remote != nil || r.Salary > 0 {
+		return nil
+	}
+	// If none of the fields were provided, return falsy
+	return fmt.Errorf("At least one valid field must be provided")
+	 return nil
 }
