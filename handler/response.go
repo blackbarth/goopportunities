@@ -22,3 +22,18 @@ func sendSuccess(ctx *gin.Context, op string, data interface{}) {
 		"data":    data,
 	})
 }
+
+type ErrorResponse struct {
+	ErrorCode int    `json:"errorCode"`
+	Message   string `json:"message"`
+}
+
+type SuccessResponse struct {
+	Message string      `json:"message"`
+	Data    interface{} `json:"data"`
+}
+
+// type CreateOpeningResponse struct {
+// 	Message string      `json:"message"`
+// 	Data   schemas.Opening `json:"data"`
+// }

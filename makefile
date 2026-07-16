@@ -1,17 +1,19 @@
-.PHONY: default run test build clean
-default: run
+.PHONY: default run build test docs clean
+
 #Variables
 APP_NAME = goopportunities
-#Commands
+
+
+#tasks
+default: run
+
 run:
 	go run main.go
-test:
-	go test ./...
 build:
 	go build -o $(APP_NAME) main.go
-clean:
-	rm -rf $(APP_NAME)
-	rm -rf ./docs
+test:
+	go test ./...
 docs:
-	swag init -g main.go
-	go doc -all
+	swag init 
+clean:
+	rm -f $()
